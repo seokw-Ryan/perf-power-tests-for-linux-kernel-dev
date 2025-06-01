@@ -37,7 +37,3 @@ print(f"GFLOPS/sec (measured): {gflops_per_sec:.2f}")
 print(f"Total GFLOPs: {total_flops/1e9:.2f}")
 print(f"Elapsed time: {elapsed:.3f} sec")
 
-# If you know your GPU’s peak TFLOPS, you can compute utilization as:
-# peak_tflops = …  # e.g. for an NVIDIA A100 FP16 peak ~ 312 TFLOPS
-# utilization = (gflops_per_sec / (peak_tflops * 1e3)) * 100
-# print(f"Percent utilized: {utilization:.2f}%")
