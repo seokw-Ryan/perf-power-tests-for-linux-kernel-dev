@@ -5,10 +5,11 @@ import time
 # Configuration
 N = 2048
 iterations = 5
-device = torch.device("cuda" if torch.xpu.is_available() else "cpu")
-print(torch.__version__)
-print(f"xpu torch is available: {torch.xpu.is_available()}")
-sys.exit()
+device = torch.device("xpu" if torch.xpu.is_available() else "cpu")
+# print(torch.__version__)
+# print(f"xpu torch is available: {torch.xpu.is_available()}")
+# sys.exit()
+print(device)
 
 # Total FLOPs for one matmul: 2·N³
 flops_per_matmul = 2 * N**3
@@ -20,13 +21,13 @@ b = torch.rand(N, N, dtype=torch.float16, device=device)
 
 # Warm‐up (one matmul) to initialize kernels
 _ = a @ b
-torch.cuda.synchronize()
+torch.xpu.synchronize()
 
 # Measure time (GPU)
 start = time.time()
 for _ in range(iterations):
     c = a @ b
-torch.cuda.synchronize()
+torch.xpu.synchronize()
 end = time.time()
 
 elapsed = end - start
