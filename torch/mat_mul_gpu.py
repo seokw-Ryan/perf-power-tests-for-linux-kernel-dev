@@ -9,6 +9,7 @@ device = torch.device("cuda" if torch.xpu.is_available() else "cpu")
 print(torch.__version__)
 print(f"xpu torch is available: {torch.xpu.is_available()}")
 sys.exit()
+
 # Total FLOPs for one matmul: 2·N³
 flops_per_matmul = 2 * N**3
 total_flops = iterations * flops_per_matmul
